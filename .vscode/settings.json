@@ -6,5 +6,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "prettier.printWidth": 999999
+  "prettier.printWidth": 999999,
+  "cSpell.words": ["Horki", "userinput"]
 }
