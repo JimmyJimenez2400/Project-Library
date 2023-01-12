@@ -13,10 +13,43 @@
 <body>
     <div id="container">
         <header id="header">
-            <h1>Holder</h1>
+            <div class="logo">
+                <a href="https://github.com/JimmyJimenez2400"><img src="./img/github-mark.png" alt="Github Logo"></a>
+            </div>
+            <h1>Project Library</h1>
         </header>
         <section id="sidebar">
-            <h1>Holder</h1>
+            <form id="form">
+                <fieldset>
+                    <legend>
+                        Fill In Book Information:
+                    </legend>
+                    <ul>
+                        <li>
+                            <label for="titleName">Name Of Book:</label>
+                            <input type="text" id="titleName" name="titleName" class="titleName">
+                        </li>
+                        <li>
+                            <label for="authorName">Author Name:</label>
+                            <input type="text" id="authorName" name="authorName" class="authorName">
+                        </li>
+                        <li>
+                            <label for="pagesRead">Pages Read: </label>
+                            <input type="text" id="pagesRead" name="pagesRead" class="pagesRead">
+                        </li>
+                        <li>
+                            <span id="statusReadOrNot">Did you read it?</span>
+                            <button type="button" aria-labelledby="statusReadOrNot" role="switch" aria-checked="false"
+                                class="StatusReadOrNot"></button>
+                            <span>Read</span>
+                            <span>Not Read</span>
+                        </li>
+                        <li>
+                            <button type="submit" class="submitBtn">NEW BOOK</button>
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
         </section>
         <main id="main">
         </main>
