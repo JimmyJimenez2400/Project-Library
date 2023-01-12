@@ -3,8 +3,10 @@ const cardContainer = document.createElement("div");
 main.appendChild(cardContainer);
 cardContainer.className = "cardContainer";
 
+const submitFormButton = document.querySelector(".submitBtn");
+const form = document.getElementById("form");
 const myLibrary = [];
-
+console.log(myLibrary);
 function Book(title, author, page, read) {
   this.bookTitle = title;
   this.bookAuthor = author;
@@ -12,13 +14,11 @@ function Book(title, author, page, read) {
   this.bookRead = read;
 }
 
-function addBookToLibrary() {
-  const myHeroAcademia = new Book("My Hero Academia", "Horki", 293, "not read yet");
-  myLibrary.push(myHeroAcademia);
-  const pythonCrashCourse = new Book("Python Crash Course", "Matthews", 200, "read");
-  myLibrary.push(pythonCrashCourse);
+function preventFormDefault(event) {
+  event.preventDefault();
 }
 
+form.addEventListener("submit", preventFormDefault);
 /*
 I want to make a function that can take user's input
 store that input into an array
@@ -29,8 +29,6 @@ store that input into an array
 4. repeat;
 
 */
-
-addBookToLibrary();
 
 /* 
 I want to make a function that will create Cards depending on the myLibrary Length
@@ -47,6 +45,7 @@ function createCards(book) {
   const cardImg = document.createElement("img");
   const cardPages = document.createElement("p");
   const cardStatus = document.createElement("button");
+  const removeBook = document.createElement("button");
 
   // Append
   cardContainer.appendChild(card);
@@ -55,6 +54,7 @@ function createCards(book) {
   card.appendChild(cardImg);
   card.appendChild(cardPages);
   card.appendChild(cardStatus);
+  card.appendChild(removeBook);
 
   // class Add
   card.className = "card";
@@ -64,14 +64,41 @@ function createCards(book) {
   cardPages.className = "cardPages";
   cardStatus.className = "cardStatus";
 
+  removeBook.setAttribute("data-location", "[i]");
+  removeBook.className = "removeBook";
+
+  // style
+
   // Add properties
-  cardTitle.textContent = `${book.bookTitle}`;
+  cardTitle.textContent = `Title: ${book.bookTitle}`;
+  cardAuthor.textContent = `Author: ${book.bookAuthor}`;
+  // Img Holder
+  cardImg.src = "";
+  cardPages.textContent = `Current Page: ${book.bookPages}`;
+  cardStatus.textContent = `Status: ${book.bookStatus}`;
+  removeBook.textContent = `Remove`;
 }
 
 function displayBookToScreen() {
+  while (cardContainer.firstChild) {
+    cardContainer.firstChild.remove();
+  }
   for (let i = 0; i < myLibrary.length; i += 1) {
     createCards(myLibrary[i]);
   }
 }
 
-displayBookToScreen();
+function addBookToLibrary() {
+  const titleNameInput = document.getElementById("titleName").value;
+  const authorNameInput = document.getElementById("authorName").value;
+  const pageNumberInput = document.getElementById("pagesRead").value;
+  const readStatus = document.getElementById("statusReadOrNot").value;
+
+  const newBook = new Book(titleNameInput, authorNameInput, pageNumberInput, readStatus);
+  myLibrary.push(newBook);
+  displayBookToScreen();
+}
+
+submitFormButton.addEventListener("click", addBookToLibrary);
+
+// Grab button element to "NEW BOOK", add event listener, call function addBookToLibrary
