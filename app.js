@@ -5,7 +5,7 @@ cardContainer.className = "cardContainer";
 
 const submitFormButton = document.querySelector(".submitBtn");
 const form = document.getElementById("form");
-const myLibrary = [];
+let myLibrary = [];
 
 function Book(title, author, page, read) {
   this.bookTitle = title;
@@ -77,6 +77,12 @@ function createCards(book) {
 
   removeBook.textContent = `Remove`;
   statusBook.textContent = `Status`;
+
+  removeBook.onclick = (item) => {
+    const objectID = item.currentTarget.getAttribute("data-id");
+    myLibrary = myLibrary.filter((objectBook) => objectBook.id !== objectID);
+    card.remove(myLibrary);
+  };
 }
 
 function displayBookToScreen() {
