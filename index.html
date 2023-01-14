@@ -27,22 +27,21 @@
                     <ul>
                         <li>
                             <label for="titleName">Name Of Book:</label>
-                            <input type="text" id="titleName" name="titleName" class="titleName">
+                            <input type="text" id="titleName" name="titleName" class="titleName"
+                                placeholder="Ex: My Hero Academia">
                         </li>
                         <li>
                             <label for="authorName">Author Name:</label>
-                            <input type="text" id="authorName" name="authorName" class="authorName">
+                            <input type="text" id="authorName" name="authorName" class="authorName"
+                                placeholder="Ex: Kohei Horikoshi">
                         </li>
                         <li>
                             <label for="pagesRead">Pages Read: </label>
-                            <input type="text" id="pagesRead" name="pagesRead" class="pagesRead">
+                            <input type="text" id="pagesRead" name="pagesRead" class="pagesRead" placeholder="293">
                         </li>
                         <li>
-                            <span id="statusReadOrNot">Did you read it?</span>
-                            <button type="button" aria-labelledby="statusReadOrNot" role="switch" aria-checked="false"
-                                class="StatusReadOrNot"></button>
-                            <span>Read</span>
-                            <span>Not Read</span>
+                            <input type="checkbox" id="checkStatus" class="toggle">
+                            <label for="checkStatus">Read?</label>
                         </li>
                         <li>
                             <button type="submit" class="submitBtn">NEW BOOK</button>
