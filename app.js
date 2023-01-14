@@ -6,12 +6,13 @@ cardContainer.className = "cardContainer";
 const submitFormButton = document.querySelector(".submitBtn");
 const form = document.getElementById("form");
 const myLibrary = [];
-console.log(myLibrary);
+
 function Book(title, author, page, read) {
   this.bookTitle = title;
   this.bookAuthor = author;
   this.bookPages = page;
   this.bookRead = read;
+  this.id = `${Date.now()}`;
 }
 
 function preventFormDefault(event) {
@@ -44,8 +45,9 @@ function createCards(book) {
   const cardAuthor = document.createElement("h4");
   const cardImg = document.createElement("img");
   const cardPages = document.createElement("p");
-  const cardStatus = document.createElement("button");
   const removeBook = document.createElement("button");
+  const statusBook = document.createElement("button");
+  const buttonHolders = document.createElement("div");
 
   // Append
   cardContainer.appendChild(card);
@@ -53,30 +55,28 @@ function createCards(book) {
   card.appendChild(cardAuthor);
   card.appendChild(cardImg);
   card.appendChild(cardPages);
-  card.appendChild(cardStatus);
-  card.appendChild(removeBook);
-
+  card.appendChild(buttonHolders);
+  buttonHolders.appendChild(removeBook);
+  buttonHolders.appendChild(statusBook);
   // class Add
   card.className = "card";
   cardTitle.className = "cardTitle";
   cardAuthor.className = "cardAuthor";
   cardImg.className = "cardImg";
   cardPages.className = "cardPages";
-  cardStatus.className = "cardStatus";
-
-  removeBook.setAttribute("data-location", "[i]");
+  buttonHolders.className = "buttonHolders";
   removeBook.className = "removeBook";
+  statusBook.className = "statusBook";
 
-  // style
+  removeBook.setAttribute("data-id", `${book.id}`);
 
-  // Add properties
   cardTitle.textContent = `Title: ${book.bookTitle}`;
   cardAuthor.textContent = `Author: ${book.bookAuthor}`;
-  // Img Holder
   cardImg.src = "";
   cardPages.textContent = `Current Page: ${book.bookPages}`;
-  cardStatus.textContent = `Status: ${book.bookStatus}`;
+
   removeBook.textContent = `Remove`;
+  statusBook.textContent = `Status`;
 }
 
 function displayBookToScreen() {
@@ -92,7 +92,7 @@ function addBookToLibrary() {
   const titleNameInput = document.getElementById("titleName").value;
   const authorNameInput = document.getElementById("authorName").value;
   const pageNumberInput = document.getElementById("pagesRead").value;
-  const readStatus = document.getElementById("statusReadOrNot").value;
+  const readStatus = document.getElementById("checkStatus").value;
 
   const newBook = new Book(titleNameInput, authorNameInput, pageNumberInput, readStatus);
   myLibrary.push(newBook);
