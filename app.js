@@ -15,28 +15,18 @@ function Book(title, author, page, read) {
   this.id = `${Date.now()}`;
 }
 
+// eslint-disable-next-line func-names
+Book.prototype.toggleStatus = function () {
+  this.bookRead = !this.bookRead;
+  return this.bookRead;
+  // Make a prototype method that can change the status of a book object.
+};
+
 function preventFormDefault(event) {
   event.preventDefault();
 }
 
 form.addEventListener("submit", preventFormDefault);
-/*
-I want to make a function that can take user's input
-store that input into an array
-
-1. Make Function addBookToLibrary -> Purpose it add to addBooks to MyLibrary Array
-2. I want to store user input into a variable, use prompt to get userinput
-3. Push user input variable to myLibrary
-4. repeat;
-
-*/
-
-/* 
-I want to make a function that will create Cards depending on the myLibrary Length
-We would have to create elements for a div
-Inside that div we will have, "h3, h4, img, pages read, status read or not"
-
-*/
 
 function createCards(book) {
   // Elements Create
@@ -76,13 +66,31 @@ function createCards(book) {
   cardPages.textContent = `Current Page: ${book.bookPages}`;
 
   removeBook.textContent = `Remove`;
-  statusBook.textContent = `Status`;
+  statusBook.textContent = `Status:${book.bookRead}`;
+  if (book.bookRead) {
+    statusBook.textContent = "Status: READ";
+    statusBook.style.backgroundColor = "green";
+  } else {
+    statusBook.textContent = `Status: NOT READ`;
+    statusBook.style.backgroundColor = "red";
+  }
 
   removeBook.onclick = (item) => {
     const objectID = item.currentTarget.getAttribute("data-id");
     myLibrary = myLibrary.filter((objectBook) => objectBook.id !== objectID);
     card.remove(myLibrary);
   };
+
+  statusBook.addEventListener("click", () => {
+    const statusChanger = book.toggleStatus();
+    if (statusChanger) {
+      statusBook.textContent = `Status: READ`;
+      statusBook.style.backgroundColor = "green";
+    } else {
+      statusBook.textContent = `Status: NOT READ`;
+      statusBook.style.backgroundColor = "red";
+    }
+  });
 }
 
 function displayBookToScreen() {
@@ -98,7 +106,7 @@ function addBookToLibrary() {
   const titleNameInput = document.getElementById("titleName").value;
   const authorNameInput = document.getElementById("authorName").value;
   const pageNumberInput = document.getElementById("pagesRead").value;
-  const readStatus = document.getElementById("checkStatus").value;
+  const readStatus = document.getElementById("checkStatus").checked;
 
   const newBook = new Book(titleNameInput, authorNameInput, pageNumberInput, readStatus);
   myLibrary.push(newBook);
@@ -106,5 +114,3 @@ function addBookToLibrary() {
 }
 
 submitFormButton.addEventListener("click", addBookToLibrary);
-
-// Grab button element to "NEW BOOK", add event listener, call function addBookToLibrary
