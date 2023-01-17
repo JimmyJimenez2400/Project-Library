@@ -28,19 +28,23 @@
                         <li>
                             <label for="titleName">Name Of Book:</label>
                             <input type="text" id="titleName" name="titleName" class="titleName"
-                                placeholder="Ex: My Hero Academia">
+                                placeholder="Ex: My Hero Academia" required>
+                            <span class=".titleBook"></span>
                         </li>
                         <li>
                             <label for="authorName">Author Name:</label>
                             <input type="text" id="authorName" name="authorName" class="authorName"
-                                placeholder="Ex: Kohei Horikoshi">
+                                placeholder="Ex: Kohei Horikoshi" minlength="1" maxlength="747" required>
+                            <span class=".authorBook"></span>
                         </li>
                         <li>
                             <label for="pagesRead">Pages Read: </label>
-                            <input type="text" id="pagesRead" name="pagesRead" class="pagesRead" placeholder="293">
+                            <input type="number" id="pagesRead" name="pagesRead" class="pagesRead" placeholder="293"
+                                min="1" required>
+                            <span class="bookPages"></span>
                         </li>
                         <li>
-                            <input type="checkbox" id="checkStatus" class="toggle">
+                            <input type="checkbox" id="checkStatus" class="toggle" required>
                             <label for="checkStatus">Read?</label>
                         </li>
                         <li>
