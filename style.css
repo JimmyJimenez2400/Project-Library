@@ -136,6 +136,10 @@ ul li input {
     border: 4px solid var(--light-yellow);
 }
 
+.titleName {
+    position: relative;
+}
+
 ul li input:focus {
     outline-width: 0;
     outline: 4px solid var(--dark-cloud);
