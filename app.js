@@ -2,7 +2,6 @@ const main = document.getElementById("main");
 const cardContainer = document.createElement("div");
 main.appendChild(cardContainer);
 cardContainer.className = "cardContainer";
-
 const submitFormButton = document.querySelector(".submitBtn");
 const form = document.getElementById("form");
 let myLibrary = [];
@@ -102,6 +101,15 @@ function displayBookToScreen() {
   }
 }
 
+function formValidator(book) {
+  if (book.bookTitle === "" || book.bookAuthor === "" || book.bookPages === "") {
+    // eslint-disable-next-line no-alert
+    alert("Please fill in required information!");
+  } else {
+    myLibrary.push(book);
+  }
+}
+
 function addBookToLibrary() {
   const titleNameInput = document.getElementById("titleName").value;
   const authorNameInput = document.getElementById("authorName").value;
@@ -109,7 +117,7 @@ function addBookToLibrary() {
   const readStatus = document.getElementById("checkStatus").checked;
 
   const newBook = new Book(titleNameInput, authorNameInput, pageNumberInput, readStatus);
-  myLibrary.push(newBook);
+  formValidator(newBook);
   displayBookToScreen();
 }
 
