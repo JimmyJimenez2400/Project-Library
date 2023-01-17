@@ -215,6 +215,19 @@ ul li input:focus {
     flex-shrink: 1;
 }
 
+.removeBook,
+.statusBook {
+    height: 100px;
+}
+
+.removeBook:hover {
+    background-color: var(--light-red);
+}
+
+.removeBook:active {
+    background-color: #3d1d15;
+}
+
 
 
 
